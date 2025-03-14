@@ -1,0 +1,54 @@
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr class="table-primary">
+        <th>Descripción</th>
+        <th>Item</th>
+        <th>Nombre</th>
+        <th>Línea</th>
+        <th>Categoría</th>
+        <th>Subcategoría</th>
+        <th>Valor Sin IVA</th>
+        <th>IVA</th>
+        <th>Valor IVA</th>
+        <th>Valor Con IVA</th>
+        <th>Cantidad</th>
+        <th>Total Sin IVA</th>
+        <th>IVA Total</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data; let i = index">
+        <td>
+          <input 
+            type="text" 
+            [(ngModel)]="row.descripcion" 
+            class="form-control descripcion" 
+            (input)="updateValue(i, 'descripcion', $event)"
+            (keydown)="onKeydown(i, $event)"  
+            (blur)="onBlur(i)"  
+            (paste)="onPaste(i, $event)"
+            id="descripcion-{{i}}"  
+            name="descripcion-{{i}}"  
+          />
+        </td>
+        <td>{{ row.item }}</td>
+        <td>{{ row.nombre }}</td>
+        <td>{{ row.linea }}</td>
+        <td>{{ row.categoria }}</td>
+        <td>{{ row.subcategoria }}</td>
+        <td>{{ row.valorSinIVA }}</td>
+        <td>{{ row.IVA }}</td>
+        <td>{{ row.valorIVA }}</td>
+        <td>{{ row.valorConIVA }}</td>
+        <td>
+          <input type="number" [(ngModel)]="row.cantidad" class="form-control" />
+        </td>
+        <td>{{ row.totalSinIVA }}</td>
+        <td>{{ row.IVATotal }}</td>
+        <td>{{ row.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
