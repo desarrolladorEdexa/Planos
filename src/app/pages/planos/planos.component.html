@@ -1,54 +1,98 @@
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr class="table-primary">
-        <th>Descripción</th>
-        <th>Item</th>
-        <th>Nombre</th>
-        <th>Línea</th>
-        <th>Categoría</th>
-        <th>Subcategoría</th>
-        <th>Valor Sin IVA</th>
-        <th>IVA</th>
-        <th>Valor IVA</th>
-        <th>Valor Con IVA</th>
-        <th>Cantidad</th>
-        <th>Total Sin IVA</th>
-        <th>IVA Total</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let row of data; let i = index">
-        <td>
+<div class="container mt-5">
+  <!-- Card para el NIT -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-lg-6 col-md-8">
+      <div class="card shadow-lg custom-card">
+        <div class="card-body">
+          <label for="listaPrecios" class="form-label fw-bold fs-5">Ingrese Número de Lista de Precios:</label>
           <input 
             type="text" 
-            [(ngModel)]="row.descripcion" 
-            class="form-control descripcion" 
-            (input)="updateValue(i, 'descripcion', $event)"
-            (keydown)="onKeydown(i, $event)"  
-            (blur)="onBlur(i)"  
-            (paste)="onPaste(i, $event)"
-            id="descripcion-{{i}}"  
-            name="descripcion-{{i}}"  
+            [(ngModel)]="nitEdexa" 
+            (ngModelChange)="onNitChange()"
+            class="form-control mb-3 custom-input" 
+            id="nitEdexa" 
+            name="nitEdexa" 
+            placeholder="Ingrese NIT"
           />
-        </td>
-        <td>{{ row.item }}</td>
-        <td>{{ row.nombre }}</td>
-        <td>{{ row.linea }}</td>
-        <td>{{ row.categoria }}</td>
-        <td>{{ row.subcategoria }}</td>
-        <td>{{ row.valorSinIVA }}</td>
-        <td>{{ row.IVA }}</td>
-        <td>{{ row.valorIVA }}</td>
-        <td>{{ row.valorConIVA }}</td>
-        <td>
-          <input type="number" [(ngModel)]="row.cantidad" class="form-control" />
-        </td>
-        <td>{{ row.totalSinIVA }}</td>
-        <td>{{ row.IVATotal }}</td>
-        <td>{{ row.total }}</td>
-      </tr>
-    </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla que se muestra condicionalmente -->
+  <div class="container mt-5">
+    <div class="table-responsive mt-4 w-100" *ngIf="nitEdexa && nitEdexa.trim() !== ''">
+      <table class="table table-striped table-bordered table-hover custom-table shadow-sm">
+        <thead class="table-dark text-light">
+          <tr>
+            <th>Descripción</th>
+            <th>Item</th>
+            <th>Nombre</th>
+            <th>Línea</th>
+            <th>Categoría</th>
+            <th>Subcategoría</th>
+            <th>Valor Sin IVA</th>
+            <th>IVA</th>
+            <th>Valor IVA</th>
+            <th>Valor Con IVA</th>
+            <th>Cantidad</th>
+            <th>Total Sin IVA</th>
+            <th>IVA Total</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data; let i = index" [class.bg-light]="i % 2 === 0" [class.table-danger]="row.error">
+            <td class="descripcion-cell">
+              <input 
+                type="text" 
+                [(ngModel)]="row.descripcion" 
+                class="form-control border-0 custom-input descripcion-input"
+                (input)="onInputChange($event, i)"
+                (paste)="onPasteDescripcion($event, i)"
+                (keydown.enter)="agregarFilaAlPresionarEnter(i)"
+                (keyup)="verificarYEliminarFila(i)"
+                (blur)="verificarYEliminarFila(i)"
+              />
+            </td>
+            <td>{{ row.item }}</td>
+            <td>{{ row.nombre }}</td>
+            <td>{{ row.linea }}</td>
+            <td>{{ row.categoria }}</td>
+            <td>{{ row.subcategoria }}</td>
+            <td>{{ row.valorSinIVA }}</td>
+            <td>{{ row.IVA }}</td>
+            <td>{{ row.valorIVA }}</td>
+            <td>{{ row.valorConIVA }}</td>
+            <td>
+              <input 
+                type="number" 
+                [(ngModel)]="row.cantidad" 
+                class="form-control border-0 custom-input" 
+                (ngModelChange)="updateValue(i, 'cantidad', +$event)" 
+              />
+            </td>
+            <td>{{ row.totalSinIVA }}</td>
+            <td>{{ row.IVATotal }}</td>
+            <td>{{ row.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="d-flex justify-content-center gap-3 mt-4" *ngIf="isDataValid()">
+    <button 
+      class="btn custom-btn px-5 py-3 shadow-lg rounded-pill" 
+      (click)="exportarExcel()"
+      [disabled]="hasError()">
+      <i class="bi bi-upload"></i> Enviar Datos
+    </button>
+    <button class="btn custom-btn custom-btn-danger px-5 py-3 shadow-lg rounded-pill" (click)="limpiarSesion()">
+      <i class="bi bi-x-circle"></i> Limpiar Búsqueda
+    </button>
+  </div>
+  
+  
 </div>

@@ -1,0 +1,260 @@
+/* Aseguramos que el contenedor principal de la tabla sea completamente responsivo */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Permite desplazamiento horizontal */
+}
+
+/* Estilo del card de NIT */
+.custom-card {
+  border-radius: 15px;
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transición suave al cambiar sombra o escala */
+}
+
+.custom-card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Efecto más fuerte en el hover */
+  transform: translateY(-5px); /* Efecto de elevación */
+}
+
+.custom-input {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1.1rem;
+  padding: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición en borde y sombra */
+}
+
+.custom-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.custom-table {
+  width: 100% !important; /* Aseguramos que la tabla ocupe todo el ancho disponible */
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #ddd;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Estilo de los botones */
+.custom-btn {
+  font-size: 0.9rem; /* Tamaño de fuente aún más pequeño */
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 6px 12px; /* Espaciado pequeño */
+  border-radius: 25px; /* Bordes redondeados */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #007bff; /* Fondo azul */
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+}
+
+.custom-btn i {
+  margin-right: 4px; /* Espacio entre el ícono y el texto */
+  font-size: 1rem; /* Íconos pequeños */
+}
+
+.custom-btn:hover {
+  background-color: #0056b3; /* Fondo más oscuro cuando se pasa el mouse */
+  transform: scale(1.05); /* Efecto de ampliación */
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+.custom-btn:active {
+  transform: scale(0.98); /* Efecto de compresión al presionar */
+  background-color: #004085; /* Fondo más oscuro cuando se presiona */
+}
+
+/* Botón de color rojo para "Limpiar Búsqueda" */
+.custom-btn-danger {
+  background-color: #dc3545; /* Fondo rojo */
+}
+
+.custom-btn-danger:hover {
+  background-color: #c82333; /* Fondo más oscuro */
+}
+
+.custom-btn-danger:active {
+  background-color: #bd2130; /* Fondo aún más oscuro al presionar */
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+  .custom-btn {
+    font-size: 0.85rem; /* Fuente más pequeña */
+    padding: 4px 10px; /* Reducción de espaciado */
+  }
+
+  .custom-btn i {
+    font-size: 0.9rem; /* Íconos más pequeños */
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .custom-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+  }
+}
+
+/* Fila con descripción destacada */
+.descripcion-cell {
+  background-color: #f0f4f8;
+  border-left: 0.25rem solid #343a40;
+  padding: 0.625rem;
+  transition: background-color 0.3s ease;
+}
+
+.descripcion-cell:hover {
+  background-color: #e6ecf3;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 123, 255, 0.2);
+}
+
+/* Estilo del campo de descripción */
+.descripcion-input {
+  font-size: 1rem;
+  padding: 0.75rem;
+  width: 100%;
+  background-color: #fafafa;
+  border-radius: 0.3125rem;
+  border: 0.125rem solid #ddd;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto cuando la descripción está en foco */
+.descripcion-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0.5rem rgba(0, 123, 255, 0.3);
+  background-color: #fff;
+}
+
+/* Mejorar visibilidad de las filas de la tabla */
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Sombra suave para cada fila cuando pasa el mouse */
+.custom-table tbody tr:hover {
+  background-color: #e9f7fe;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos para la celda de la descripción con error */
+.table-danger .descripcion-input {
+  border-color: #dc3545;
+  background-color: #f8d7da;
+}
+
+/* Aseguramos que la tabla sea responsiva */
+@media (max-width: 768px) {
+  .custom-table {
+    font-size: 0.85rem !important; /* Reducir el tamaño de la fuente para pantallas pequeñas */
+  }
+
+  .descripcion-input {
+    font-size: 0.9rem !important; /* Reducir el tamaño de la fuente en el campo de descripción */
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.5rem 0.75rem !important; /* Reducir el espaciado dentro de las celdas */
+  }
+}
+
+/* Para pantallas más pequeñas (móviles) */
+@media (max-width: 480px) {
+  .custom-table {
+    font-size: 0.8rem !important; /* Reducir aún más el tamaño de la fuente */
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.5rem !important; /* Ajustar aún más el espaciado */
+  }
+
+  .descripcion-input {
+    font-size: 0.85rem !important; /* Reducir tamaño de la fuente en el campo de descripción */
+  }
+}
+/* Aseguramos que el contenedor principal de la tabla sea completamente responsivo */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Permite desplazamiento horizontal */
+}
+
+/* Aseguramos que la tabla se ajuste al 100% de su contenedor */
+.custom-table {
+  width: 100% !important;
+  font-size: 1rem;
+  border-radius: 0.625rem;
+  border: 0.0625rem solid #ddd;
+  overflow: hidden;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Responsividad para pantallas de hasta 1232px */
+@media (max-width: 1232px) {
+  .custom-table {
+    font-size: 0.95rem; /* Reducir ligeramente el tamaño de la fuente */
+  }
+
+  .descripcion-input {
+    font-size: 1rem; /* Ajustar tamaño de la fuente en el campo de descripción */
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.6rem 1rem; /* Ajustar el espaciado dentro de las celdas */
+  }
+}
+
+/* Responsividad para pantallas pequeñas */
+@media (max-width: 768px) {
+  .custom-table {
+    font-size: 0.85rem !important; /* Reducir el tamaño de la fuente en pantallas pequeñas */
+  }
+
+  .descripcion-input {
+    font-size: 0.9rem !important; /* Reducir tamaño de la fuente en el campo de descripción */
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.5rem 0.75rem !important; /* Reducir el espaciado dentro de las celdas */
+  }
+}
+
+/* Para pantallas más pequeñas (móviles) */
+@media (max-width: 480px) {
+  .custom-table {
+    font-size: 0.8rem !important; /* Reducir aún más el tamaño de la fuente */
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.5rem !important; /* Ajustar aún más el espaciado */
+  }
+
+  .descripcion-input {
+    font-size: 0.85rem !important; /* Reducir tamaño de la fuente en el campo de descripción */
+  }
+}
+

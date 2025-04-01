@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <div class="card shadow-lg custom-card border-0 rounded-3">
+    <div class="card-header text-center py-3">
+      <h4><i class="bi bi-gear-fill"></i> Gestión de Equivalencias</h4>
+    </div>
+    <div class="card-body">
+
+      <!-- Formulario de ingreso manual -->
+      <form (ngSubmit)="guardarEquivalencia()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="idAxa" class="form-label">ID AXA:</label>
+            <input type="number" id="idAxa" class="form-control custom-input" [(ngModel)]="equivalencia.idAxa" name="idAxa" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="nitEdexa" class="form-label">NIT Edexa:</label>
+            <input type="text" id="nitEdexa" class="form-control custom-input" [(ngModel)]="equivalencia.nitEdexa" name="nitEdexa" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="idProducto" class="form-label">ID Producto:</label>
+            <input type="text" id="idProducto" class="form-control custom-input" [(ngModel)]="equivalencia.idProducto" name="idProducto" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="descripcion" class="form-label">Descripción:</label>
+            <input type="text" id="descripcion" class="form-control custom-input" [(ngModel)]="equivalencia.descripcion" name="descripcion" required>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="listaPrecio" class="form-label">Lista Precio:</label>
+            <input type="text" id="listaPrecio" class="form-control custom-input" [(ngModel)]="equivalencia.listaPrecio" name="listaPrecio" required>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-success px-4 py-2 shadow-sm rounded-pill">
+            <i class="bi bi-save"></i> Guardar Equivalencia
+          </button>
+        </div>
+      </form>
+
+      <hr class="my-4">
+
+      <!-- Botón para abrir el modal de carga -->
+      <div class="text-center">
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#cargarExcelModal">
+          <i class="bi bi-upload"></i> Cargar Excel
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal para cargar Excel -->
+<div class="modal fade" id="cargarExcelModal" tabindex="-1" aria-labelledby="cargarExcelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cargarExcelModalLabel">Cargar por plano (Excel)</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label fw-bold">Seleccione un archivo Excel:</label>
+        <div class="input-group mb-3">
+          <input type="file" class="form-control custom-input" (change)="cargarPorPlano($event)" accept=".xls,.xlsx">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

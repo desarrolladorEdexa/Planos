@@ -1,0 +1,113 @@
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4">Buscar Equivalencias por NIT</h2>
+  
+      <!-- Filtro de NIT -->
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Ingrese NIT" [(ngModel)]="filtro.nitEdexa">
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary" (click)="buscarPorNit()">Buscar</button>
+        </div>
+      </div>
+  
+      <!-- Sección de resultados (solo se muestra si hay datos) -->
+      <div *ngIf="equivalencias.length > 0">
+        <h3 class="text-center mb-3">Lista de Equivalencias</h3>
+  
+        <!-- Filtros adicionales -->
+        <div class="row mb-3">
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar ID AXA" [(ngModel)]="filtro.idAxa">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar Producto" [(ngModel)]="filtro.idProducto">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar Descripción" [(ngModel)]="filtro.descripcion">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" placeholder="Buscar Lista Precio" [(ngModel)]="filtro.listaPrecio">
+          </div>
+        </div>
+  
+        <!-- Tabla con Scroll -->
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>ID AXA</th>
+                <th>NIT EDEXA</th>
+                <th>ID Producto</th>
+                <th>Descripción</th>
+                <th>Lista Precio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let equivalencia of equivalenciasFiltradas()">
+                <td>{{ equivalencia.idAxa }}</td>
+                <td>{{ equivalencia.nitEdexa }}</td>
+                <td>{{ equivalencia.idProducto }}</td>
+                <td>{{ equivalencia.descripcion }}</td>
+                <td>{{ equivalencia.listaPrecio }}</td>
+                <td class="text-center">
+                  <button class="btn btn-warning btn-sm me-2" (click)="editarEquivalencia(equivalencia)">
+                    <i class="bi bi-pencil-fill"></i>
+                  </button>
+                  <button class="btn btn-danger btn-sm" (click)="eliminarEquivalencia(equivalencia.id)">
+                    <i class="bi bi-trash-fill"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
+      <!-- Mensaje si no hay datos -->
+      <div *ngIf="busquedaRealizada && equivalencias.length === 0" class="text-center text-danger">
+        <p>No se encontraron equivalencias para el NIT ingresado.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- MODAL DE EDICIÓN -->
+  <div *ngIf="isEditing" class="modal-overlay">
+    <div class="modal-content">
+      <button class="close-button" (click)="isEditing = false">&times;</button>
+      <h3 class="text-center mb-4">Editar Equivalencia</h3>
+      
+      <div class="mb-3">
+        <label class="form-label">ID AXA:</label>
+        <input type="number" class="form-control" [(ngModel)]="equivalenciaActual!.idAxa">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">NIT Edexa:</label>
+        <input type="text" class="form-control" [(ngModel)]="equivalenciaActual!.nitEdexa">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">ID Producto:</label>
+        <input type="text" class="form-control" [(ngModel)]="equivalenciaActual!.idProducto">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Descripción:</label>
+        <input type="text" class="form-control" [(ngModel)]="equivalenciaActual!.descripcion">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Lista Precio:</label>
+        <input type="text" class="form-control" [(ngModel)]="equivalenciaActual!.listaPrecio">
+      </div>
+  
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-success" (click)="guardarEdicion()">
+          <i class="bi bi-save"></i> Guardar
+        </button>
+        <button class="btn btn-danger" (click)="isEditing = false">
+          <i class="bi bi-x"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,44 @@
+/* Mejorar los bordes de la tabla */
+.table-bordered {
+    border: 1px solid #ddd;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Estilo para los botones cuando se pasa el ratón */
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-warning, .btn-danger {
+    font-size: 1.2rem;
+  }
+  
+  /* Estilo del formulario de edición */
+  input.form-control {
+    border-radius: 5px;
+  }
+  
+  button:focus {
+    outline: none !important;
+  }
+  #nuevoUsuario{
+    width: 200px;
+  }
+  

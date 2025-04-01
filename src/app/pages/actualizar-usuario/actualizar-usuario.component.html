@@ -1,0 +1,98 @@
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4">Usuarios</h2>
+  
+      <!-- Botón para agregar nuevo usuario -->
+      <button class="btn btn-success mb-3" id="nuevoUsuario" (click)="toggleCreate()">
+        <i class="bi bi-plus-circle"></i> Crear Nuevo Usuario
+      </button>
+  
+      <!-- Tabla con usuarios -->
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Tipo de Usuario</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.correo }}</td>
+            <td>{{ user.tipoUsuario }}</td>
+            <td class="text-center">
+              <!-- Icono Editar -->
+              <button class="btn btn-warning btn-sm me-2" (click)="editUser(user)" title="Editar">
+                <i class="bi bi-pencil-fill"></i>
+              </button>
+              <!-- Icono Eliminar -->
+              <button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)" title="Eliminar">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Formulario de Edición -->
+      <div *ngIf="isEditing" class="mt-4">
+        <h3 class="text-center mb-4">Editar Usuario</h3>
+        <div class="mb-3">
+          <label class="form-label">Nombre:</label>
+          <input type="text" class="form-control" [(ngModel)]="user.nombre" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="email" class="form-control" [(ngModel)]="user.correo" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña:</label>
+          <input type="text" class="form-control" [(ngModel)]="user.password" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Tipo de Usuario:</label>
+          <input type="number" class="form-control" [(ngModel)]="user.tipoUsuario" />
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-success" (click)="saveChanges()">
+            <i class="bi bi-save"></i> Guardar
+          </button>
+          <button class="btn btn-danger" (click)="toggleEdit()">
+            <i class="bi bi-x"></i> Cancelar
+          </button>
+        </div>
+      </div>
+  
+      <!-- Formulario para Crear Nuevo Usuario -->
+      <div *ngIf="isCreating" class="mt-4">
+        <h3 class="text-center mb-4">Crear Nuevo Usuario</h3>
+        <div class="mb-3">
+          <label class="form-label">Nombre:</label>
+          <input type="text" class="form-control" [(ngModel)]="newUser.nombre" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email:</label>
+          <input type="email" class="form-control" [(ngModel)]="newUser.correo" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña:</label>
+          <input type="text" class="form-control" [(ngModel)]="newUser.password" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Tipo de Usuario:</label>
+          <input type="number" class="form-control" [(ngModel)]="newUser.tipoUsuario" />
+        </div>
+        <div class="d-flex justify-content-between">
+          <button class="btn btn-success" (click)="createUser()">
+            <i class="bi bi-check-circle"></i> Crear Usuario
+          </button>
+          <button class="btn btn-danger" (click)="toggleCreate()">
+            <i class="bi bi-x"></i> Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
