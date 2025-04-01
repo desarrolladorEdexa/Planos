@@ -1,0 +1,6 @@
+{
+    "/Plano/api": {
+      "target": "https://10.39.7.115",
+      "secure": false
+    }
+}
