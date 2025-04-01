@@ -43,10 +43,10 @@ interface TableRow {
 })
 export class ApiService {
 
-  private apiItems = 'http://10.39.7.115:80/Plano/api/itemAll'; 
-  private apiUrl = 'http://10.39.7.115:80/Plano/api/Equivalencias';
-  private apiUsuarios ='http://10.39.7.115:80/Plano/api/Usuarios';
-  private apiEquivalencias = 'http://10.39.7.115:80/Plano/api/ListasPrecios';
+  private apiItems = 'https://10.39.7.115:80/Plano/api/itemAll'; 
+  private apiUrl = 'https://10.39.7.115:80/Plano/api/Equivalencias';
+  private apiUsuarios ='https://10.39.7.115:80/Plano/api/Usuarios';
+  private apiEquivalencias = 'https://10.39.7.115:80/Plano/api/ListasPrecios';
 
  
   constructor(private http: HttpClient) {}
